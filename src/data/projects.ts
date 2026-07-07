@@ -85,6 +85,7 @@ export const projects: Project[] = [
     technicalDetail:
       "Built with editable data, responsive interaction design, accessible animation, and an original digital-tree metaphor rather than a generic portfolio template.",
     tags: ["Design", "Brand", "Website", "Strategy"],
-    status: "Portfolio"
+    status: "Portfolio",
+    githubUrl: "https://github.com/Shrivar3/shrivar-digital-tree-website"
   }
 ];
