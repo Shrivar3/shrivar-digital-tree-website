@@ -87,6 +87,10 @@ main::before {
   color: #ffffff;
 }
 
+summary::-webkit-details-marker {
+  display: none;
+}
+
 a {
   color: inherit;
   text-decoration: none;

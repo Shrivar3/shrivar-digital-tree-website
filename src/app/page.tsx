@@ -12,6 +12,7 @@ import {
   Users
 } from "lucide-react";
 import { ContactPanel } from "@/components/ContactPanel";
+import { CourseworkEvidence } from "@/components/CourseworkEvidence";
 import { DigitalTreeHero } from "@/components/DigitalTreeHero";
 import { FinanceSection } from "@/components/FinanceSection";
 import { Footer } from "@/components/Footer";
@@ -159,6 +160,13 @@ export default function Home() {
               </span>
             ))}
           </div>
+
+          <div className="mt-8">
+            <CourseworkEvidence
+              title="MMORSE evidence map"
+              intro="A compact map of the Warwick modules behind the claims on this site: finance, statistics, machine learning, stochastic processes, optimisation, economics, and communication. It is evidence of formal preparation, not a claim of mastery in every area."
+            />
+          </div>
         </SectionShell>
 
         <SectionShell
@@ -200,6 +208,15 @@ export default function Home() {
               <ThemeList items={researchThemes} />
             </GlowCard>
           </div>
+
+          <div className="mt-8">
+            <CourseworkEvidence
+              clusterIds={["statistics-inference", "stochastic-probability"]}
+              title="Research and uncertainty foundations"
+              intro="Relevant coursework behind the research layer: applied modelling, Bayesian reasoning, probability, stochastic processes, Monte Carlo methods, and time-series thinking."
+              compact
+            />
+          </div>
         </SectionShell>
 
         <SectionShell
@@ -227,6 +244,15 @@ export default function Home() {
             <GlowCard>
               <ThemeList items={aiThemes} />
             </GlowCard>
+          </div>
+
+          <div className="mt-8">
+            <CourseworkEvidence
+              clusterIds={["machine-learning-data", "foundations-optimisation"]}
+              title="Technical preparation for AI systems"
+              intro="The AI and startup layer is supported by formal work in statistical learning, machine learning frameworks, programming, visual communication, optimisation, game-theoretic decision-making, and mathematical foundations."
+              compact
+            />
           </div>
         </SectionShell>
 
@@ -266,6 +292,15 @@ export default function Home() {
             <GlowCard>
               <ThemeList items={analyticsThemes} />
             </GlowCard>
+          </div>
+
+          <div className="mt-8">
+            <CourseworkEvidence
+              clusterIds={["machine-learning-data", "statistics-inference"]}
+              title="Data analysis stream evidence"
+              intro="Coursework that supports analytics and decision intelligence claims: statistical modelling, GLMs, Bayesian methods, machine learning, Python, R, visualisation, and communication."
+              compact
+            />
           </div>
         </SectionShell>
 

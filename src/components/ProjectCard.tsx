@@ -84,6 +84,23 @@ export function ProjectCard({ project }: ProjectCardProps) {
               next improvements. This keeps the project ready for richer proof-of-work without
               inventing details prematurely.
             </p>
+            {project.academicEvidence?.length ? (
+              <div className="mt-4 border-t border-cyan/15 pt-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan">
+                  Academic support
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {project.academicEvidence.map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-md border border-white/10 bg-ink/65 px-2.5 py-1.5 text-xs leading-5 text-slate-300"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ) : null}
           </div>
         ) : null}
 

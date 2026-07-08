@@ -63,7 +63,7 @@ export const financeModules: FinanceModule[] = [
     concepts: [
       "Brownian motion",
       "martingales",
-      "Itô calculus",
+      "Ito calculus",
       "risk-neutral pricing",
       "Black-Scholes"
     ],
@@ -124,7 +124,7 @@ export const financeModules: FinanceModule[] = [
     code: "ST909",
     title: "Applications of Stochastic Calculus",
     concepts: [
-      "Itô processes",
+      "Ito processes",
       "stochastic integration",
       "martingale methods",
       "change of measure"

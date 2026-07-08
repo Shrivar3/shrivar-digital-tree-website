@@ -12,6 +12,7 @@ import {
   ShieldAlert,
   Sigma
 } from "lucide-react";
+import { CourseworkEvidence } from "@/components/CourseworkEvidence";
 import { GlowCard } from "@/components/GlowCard";
 import { SectionShell } from "@/components/SectionShell";
 import {
@@ -100,6 +101,15 @@ export function FinanceSection() {
         })}
       </div>
 
+      <div className="mt-8">
+        <CourseworkEvidence
+          clusterIds={["quant-finance", "stochastic-probability", "statistics-inference"]}
+          title="Coursework backing the finance layer"
+          intro="A concise evidence layer behind the investing and quantitative finance claims: stochastic finance, Monte Carlo, time series, Bayesian methods, statistical modelling, trading strategy evaluation, and financial reporting."
+          compact
+        />
+      </div>
+
       <div className="mt-8 grid gap-6 lg:grid-cols-[0.42fr_0.58fr]">
         <div className="glass-line rounded-lg p-4">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-cyan">
@@ -155,7 +165,9 @@ export function FinanceSection() {
         <GlowCard>
           <div className="mb-5 flex items-center gap-3">
             <Calculator size={24} className="text-gold" aria-hidden="true" />
-            <h3 className="text-xl font-semibold text-white">Warwick financial mathematics map</h3>
+            <h3 className="text-xl font-semibold text-white">
+              Final-year finance methods map
+            </h3>
           </div>
           <div className="grid gap-3 md:grid-cols-2">
             {financeModules.map((module) => (

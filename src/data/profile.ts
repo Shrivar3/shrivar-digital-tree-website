@@ -17,7 +17,7 @@ export const profile = {
   credibilitySignals: [
     {
       title: "Quantitative foundation",
-      text: "MMORSE at the University of Warwick on the Data Analysis Stream with Financial Mathematics: mathematics, operational research, statistics, economics, data analysis, and finance."
+      text: "MMORSE at the University of Warwick on the Data Analysis Stream with Financial Mathematics: formal grounding across statistics, stochastic processes, optimisation, economics, data analysis, and finance."
     },
     {
       title: "Industry analytics",
