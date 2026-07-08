@@ -68,12 +68,12 @@ export const projects: Project[] = [
   {
     title: "Investment Portfolio Analysis",
     description:
-      "Long-term portfolio construction and risk analysis using evidence-based investing principles.",
+      "Long-term portfolio construction, factor-tilt evaluation, drawdown analysis, and wealth-path modelling using evidence-based investing principles.",
     audienceSummary:
-      "A finance project focused on sensible risk, compounding, and robust decision-making rather than short-term prediction.",
+      "A finance project focused on global diversification, sensible risk, compounding, tax-aware implementation, and robust decision-making rather than short-term market prediction.",
     technicalDetail:
-      "Covers allocation logic, risk tolerance, long-run expected value, diversification, drawdowns, and the difference between analysis and financial advice.",
-    tags: ["Finance", "Investing", "Risk", "Compounding"],
+      "Covers allocation logic, expected return versus volatility, Sharpe ratio, CAGR, max drawdown, sequence risk, fees, tracking error, Monte Carlo wealth simulations, factor definitions, and the difference between analytical modelling and financial advice.",
+    tags: ["Finance", "Investing", "Risk", "Monte Carlo"],
     status: "Concept"
   },
   {

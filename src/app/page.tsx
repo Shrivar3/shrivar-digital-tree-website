@@ -5,7 +5,6 @@ import {
   CheckCircle2,
   GraduationCap,
   Layers3,
-  LineChart,
   Microscope,
   Rocket,
   ShieldCheck,
@@ -14,6 +13,7 @@ import {
 } from "lucide-react";
 import { ContactPanel } from "@/components/ContactPanel";
 import { DigitalTreeHero } from "@/components/DigitalTreeHero";
+import { FinanceSection } from "@/components/FinanceSection";
 import { Footer } from "@/components/Footer";
 import { GlowCard } from "@/components/GlowCard";
 import { Navigation } from "@/components/Navigation";
@@ -40,15 +40,6 @@ const aiThemes = [
   "Useful automation",
   "Strategic prototyping",
   "Systems that solve real problems"
-];
-
-const financeThemes = [
-  "Long-term investing",
-  "Portfolio construction",
-  "Risk and drawdowns",
-  "Compounding",
-  "Evidence-based decisions",
-  "Financial mathematics"
 ];
 
 const analyticsThemes = [
@@ -239,33 +230,7 @@ export default function Home() {
           </div>
         </SectionShell>
 
-        <SectionShell
-          id="finance"
-          eyebrow="Finance"
-          title="Evidence-based investing thinking without pretending to predict the future."
-          intro="Finance here is treated as applied decision-making under uncertainty: risk, compounding, portfolio construction, and robust long-term reasoning. Nothing on this site is financial advice."
-        >
-          <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
-            <GlowCard>
-              <div className="flex items-start gap-4">
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-md border border-gold/25 bg-gold/10 text-gold">
-                  <LineChart size={21} aria-hidden="true" />
-                </span>
-                <div>
-                  <h3 className="text-xl font-semibold text-white">Portfolio reasoning</h3>
-                  <p className="mt-3 text-sm leading-7 text-slate-300">
-                    The goal is controlled risk and long-run evidence, not overconfident market
-                    narratives. Good finance work makes assumptions visible and decisions more
-                    robust.
-                  </p>
-                </div>
-              </div>
-            </GlowCard>
-            <GlowCard>
-              <ThemeList items={financeThemes} />
-            </GlowCard>
-          </div>
-        </SectionShell>
+        <FinanceSection />
 
         <SectionShell
           id="data"

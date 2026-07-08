@@ -11,13 +11,17 @@ export const profile = {
   aboutLead:
     "If you are deciding whether to hire me, collaborate with me, or back something I build, the useful question is not which label fits me. It is whether I can understand a difficult problem, reduce the uncertainty, build the right thing, and communicate the result clearly.",
   aboutThesis:
-    "My edge is the combination: a quantitative base, strategic judgement, AI-native building habits, and a high bar for presentation. I am early enough that the public proof-of-work is still compounding, but the direction is clear.",
+    "My edge is the combination: a quantitative base, live data and analytics exposure at Barclays, AI-native building habits, and a high bar for presentation. I am early enough that the public proof-of-work is still compounding, but the direction is clear.",
   philosophy:
     "Be curious, be honest, build useful things, and compound towards a better world.",
   credibilitySignals: [
     {
       title: "Quantitative foundation",
-      text: "MMORSE at the University of Warwick: mathematics, operational research, statistics, economics, data analysis, and financial mathematics."
+      text: "MMORSE at the University of Warwick on the Data Analysis Stream with Financial Mathematics: mathematics, operational research, statistics, economics, data analysis, and finance."
+    },
+    {
+      title: "Industry analytics",
+      text: "Graduate Program at Barclays in Retail Banking Data & Analytics, now Decision Intelligence: practical exposure to data, decisions, and financial-services context."
     },
     {
       title: "Builder range",
