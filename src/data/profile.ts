@@ -1,83 +1,110 @@
 export const profile = {
   name: "Shrivar Singh",
-  role: "Strategic problem-solver",
+  role: "Quantitative founder-builder",
   location: "United Kingdom",
-  labels: ["Thinker", "Builder", "Analyst", "Strategist"],
-  heroHeadline: "Clear thinking. Useful systems. Better decisions.",
+  heroHeadline: "I build quantitative systems that turn noisy data into better decisions.",
   heroBody:
-    "I work where statistics, AI, finance, research, and product judgement meet: turning uncertainty into systems people can trust.",
-  identityStatement:
-    "An adaptive problem-solver with a quantitative foundation and a taste for work that is rigorous, practical, and well presented.",
-  aboutLead:
-    "If you are deciding whether to hire me, collaborate with me, or back something I build, the useful question is not which label fits me. It is whether I can understand a difficult problem, reduce the uncertainty, build the right thing, and communicate the result clearly.",
-  aboutThesis:
-    "My edge is the combination: a quantitative base, live data and analytics exposure at Barclays, AI-native building habits, and a high bar for presentation. I am early enough that the public proof-of-work is still compounding, but the direction is clear.",
+    "Statistics, AI, analytics, and finance — translated into research, prototypes, and products with commercial judgement.",
+  opportunityNote: "Open to select analytical, AI, and product opportunities.",
   philosophy:
-    "Be curious, be honest, build useful things, and compound towards a better world.",
-  credibilitySignals: [
+    "Start with the decision. Make the uncertainty visible. Build the clearest useful thing.",
+  capabilities: [
     {
-      title: "Quantitative foundation",
-      text: "MMORSE at the University of Warwick on the Data Analysis Stream with Financial Mathematics: formal grounding across statistics, stochastic processes, optimisation, economics, data analysis, and finance."
+      id: "decision-intelligence",
+      title: "Decision intelligence and customer analytics",
+      outcome:
+        "Turn messy behavioural and feedback data into clearer priorities, with uncertainty and data quality kept visible."
     },
     {
-      title: "Industry analytics",
-      text: "Graduate Program at Barclays in Retail Banking Data & Analytics, now Decision Intelligence: practical exposure to data, decisions, and financial-services context."
+      id: "uncertainty",
+      title: "Statistical modelling and uncertainty",
+      outcome:
+        "Build models that separate signal, noise, assumptions, and limitations so decisions remain robust."
     },
     {
-      title: "Builder range",
-      text: "Comfortable moving from research and analysis into prototypes, dashboards, AI workflows, technical documents, and polished public-facing outputs."
+      id: "applied-ai",
+      title: "Applied AI and agentic workflows",
+      outcome:
+        "Prototype AI workflows that research, reason, use tools, and verify their work against real constraints."
     },
     {
-      title: "Decision judgement",
-      text: "Strong default lens around uncertainty, assumptions, robustness, risk, expected value, and whether the work actually improves a decision."
+      id: "quantitative-systems",
+      title: "Forecasting, simulation, and quantitative analysis",
+      outcome:
+        "Explore future paths, stress-test assumptions, and make risk easier to understand before committing."
     },
     {
-      title: "Communication taste",
-      text: "Technical enough for rigorous readers, visual and concise enough for people who need the practical meaning quickly."
+      id: "data-products",
+      title: "Data products and interactive dashboards",
+      outcome:
+        "Ship analytical tools that make complex information usable, shareable, and ready for action."
+    },
+    {
+      id: "research-translation",
+      title: "Research translation and technical communication",
+      outcome:
+        "Turn difficult technical ideas into clear narratives, visuals, and practical next steps."
     }
   ],
-  evaluationFit: [
+  differentiation: {
+    statement:
+      "Quantitative depth. Commercial judgement. AI-native execution. Clear communication.",
+    body:
+      "I can move between research, analysis, prototype, and presentation without losing the thread of the original decision. That range is useful when a problem is still ambiguous and the right output has not been decided yet.",
+    stages: [
+      {
+        title: "Research",
+        text: "Understand the question, assumptions, and context."
+      },
+      {
+        title: "Analysis",
+        text: "Model the problem and quantify what is uncertain."
+      },
+      {
+        title: "Prototype",
+        text: "Build quickly, test the idea, and expose constraints."
+      },
+      {
+        title: "Presentation",
+        text: "Make the result clear enough to support a decision."
+      }
+    ]
+  },
+  foundationLead:
+    "Formal training across statistical inference, stochastic modelling, machine learning, optimisation, economics, and financial mathematics.",
+  education: {
+    institution: "University of Warwick",
+    programme: "MMORSE",
+    stream: "Data Analysis Stream with Financial Mathematics",
+    summary:
+      "Advanced quantitative training with an emphasis on using mathematical and statistical methods to reason about real-world problems."
+  },
+  experience: {
+    organisation: "Barclays",
+    area: "Retail Banking Data & Analytics, now Decision Intelligence",
+    summary:
+      "Practical exposure to data, decisions, stakeholder context, and financial services through the graduate programme."
+  },
+  foundationAreas: [
     {
-      title: "For employers",
-      text: "Useful when the work needs analytical depth, structured problem-solving, clear stakeholder communication, and someone who can learn across domains quickly."
+      title: "Statistical inference and uncertainty",
+      text: "Estimation, modelling, Bayesian methods, forecasting, and principled uncertainty quantification."
     },
     {
-      title: "For collaborators",
-      text: "Strong fit for AI, analytics, finance, research, startup, and product problems where the answer is not obvious at the beginning."
+      title: "Machine learning and data systems",
+      text: "Statistical learning, model selection, programming, data analysis, and visualisation."
     },
     {
-      title: "For investors or builders",
-      text: "The founder-facing signal is adaptability: curiosity, taste, technical fluency, and a bias towards building useful systems rather than only discussing ideas."
-    }
-  ],
-  principles: [
-    "Evidence",
-    "Clarity",
-    "Compounding",
-    "Execution",
-    "Usefulness",
-    "Rigour",
-    "Curiosity",
-    "Honesty",
-    "Adaptability",
-    "Taste"
-  ],
-  capabilityGroups: [
-    {
-      title: "Problem framing",
-      text: "Start with the real decision, expose assumptions, and separate signal from noise."
+      title: "Stochastic processes and quantitative finance",
+      text: "Random systems, simulation, time series, stochastic calculus, risk, and pricing foundations."
     },
     {
-      title: "Quantitative reasoning",
-      text: "Use statistics, uncertainty, model validity, and risk to make robust choices."
+      title: "Optimisation, economics, and decision-making",
+      text: "Mathematical programming, game-theoretic thinking, economics, and sequential decisions."
     },
     {
-      title: "Useful building",
-      text: "Prototype systems, dashboards, agent workflows, and explanations that can be reused."
-    },
-    {
-      title: "Clear communication",
-      text: "Translate technical work into practical meaning for the audience in front of it."
+      title: "Programming and technical communication",
+      text: "Python, R, reproducible analysis, visual explanation, and technically grounded presentation."
     }
   ]
-};
+} as const;

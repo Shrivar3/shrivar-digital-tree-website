@@ -1,6 +1,7 @@
 export type Branch = {
   id: string;
   label: string;
+  shortLabel: string;
   href: string;
   description: string;
   x: number;
@@ -11,83 +12,77 @@ export type Branch = {
 
 export const branches: Branch[] = [
   {
-    id: "about",
-    label: "About",
-    href: "#about",
-    description: "The case for hiring, backing, or building with me.",
-    x: 22,
-    y: 24,
-    side: "left",
-    accent: "gold"
-  },
-  {
-    id: "projects",
-    label: "Projects",
-    href: "#projects",
-    description: "Proof-of-work across AI, analytics, research, and strategy.",
-    x: 78,
-    y: 24,
+    id: "builds",
+    label: "Decision intelligence",
+    shortLabel: "Builds",
+    href: "#builds",
+    description: "Customer analytics and proof-of-work built around real decisions.",
+    x: 76,
+    y: 18,
     side: "right",
     accent: "cyan"
   },
   {
-    id: "research",
-    label: "Research",
-    href: "#research",
-    description: "Uncertainty, modelling, and rigorous explanation.",
-    x: 18,
-    y: 39,
+    id: "capabilities",
+    label: "Applied AI",
+    shortLabel: "Capabilities",
+    href: "#capabilities",
+    description: "Agentic workflows, prototypes, and practical automation.",
+    x: 28,
+    y: 30,
     side: "left",
     accent: "azure"
   },
   {
-    id: "ai-startups",
-    label: "AI & Startups",
-    href: "#ai-startups",
-    description: "Agent workflows, applied AI, and product thinking.",
-    x: 82,
-    y: 39,
-    side: "right",
+    id: "research",
+    label: "Uncertainty",
+    shortLabel: "Research",
+    href: "#research",
+    description: "Statistical reasoning, modelling, and research made legible.",
+    x: 20,
+    y: 50,
+    side: "left",
     accent: "mint"
   },
   {
-    id: "finance",
-    label: "Finance",
-    href: "#finance",
-    description: "Risk, compounding, and quantitative judgement.",
-    x: 22,
-    y: 54,
-    side: "left",
+    id: "foundation",
+    label: "Quantitative finance",
+    shortLabel: "Foundation",
+    href: "#foundation",
+    description: "Stochastic systems, simulation, risk, and decision foundations.",
+    x: 80,
+    y: 56,
+    side: "right",
     accent: "gold"
   },
   {
-    id: "data",
-    label: "Data & Analytics",
-    href: "#data",
-    description: "Turning messy information into useful decisions.",
-    x: 78,
-    y: 54,
+    id: "capabilities",
+    label: "Data products",
+    shortLabel: "Capabilities",
+    href: "#capabilities",
+    description: "Interactive tools that translate analysis into action.",
+    x: 73,
+    y: 67,
     side: "right",
-    accent: "cyan"
+    accent: "azure"
   },
   {
-    id: "writing",
-    label: "Writing",
-    href: "#writing",
-    description: "Essays, explainers, and technical notes.",
+    id: "research",
+    label: "Research translation",
+    shortLabel: "Research",
+    href: "#research",
+    description: "Technical ideas communicated without hiding the assumptions.",
     x: 29,
     y: 69,
     side: "left",
     accent: "mint"
-  },
-  {
-    id: "contact",
-    label: "Contact",
-    href: "#contact",
-    description: "Ways to connect, collaborate, or work together.",
-    x: 71,
-    y: 69,
-    side: "right",
-    accent: "azure"
   }
 ];
+
+export const navigationItems = [
+  { id: "builds", label: "Builds", href: "#builds" },
+  { id: "capabilities", label: "Capabilities", href: "#capabilities" },
+  { id: "research", label: "Research", href: "#research" },
+  { id: "foundation", label: "Foundation", href: "#foundation" },
+  { id: "contact", label: "Contact", href: "#contact" }
+] as const;

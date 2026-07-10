@@ -1,233 +1,236 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, ArrowRight, Network, Sparkles } from "lucide-react";
+import { useState } from "react";
+import {
+  ArrowDownRight,
+  ArrowRight,
+  ArrowUpRight,
+  BarChart3,
+  BrainCircuit,
+  ChartNoAxesCombined,
+  Cuboid,
+  Network,
+  Search
+} from "lucide-react";
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useSpring
+} from "framer-motion";
+import { ParticleField } from "@/components/ParticleField";
 import { branches, type Branch } from "@/data/nav";
 import { profile } from "@/data/profile";
-import { ParticleField } from "@/components/ParticleField";
 
 const accentStroke: Record<Branch["accent"], string> = {
-  cyan: "rgba(88, 230, 255, 0.88)",
-  gold: "rgba(246, 200, 106, 0.86)",
-  mint: "rgba(108, 241, 196, 0.82)",
-  azure: "rgba(91, 156, 255, 0.86)"
+  cyan: "#73e9ff",
+  gold: "#e7b85f",
+  mint: "#78f4df",
+  azure: "#74a6ff"
 };
 
-function branchPath(branch: Branch) {
-  const startX = 50;
-  const startY = branch.y + 8;
-  const firstControlX = branch.side === "left" ? 42 : 58;
-  const secondControlX = branch.side === "left" ? branch.x + 10 : branch.x - 10;
-  const branchLift = branch.y - 2;
-  return `M ${startX} ${startY} C ${firstControlX} ${startY}, ${secondControlX} ${branchLift}, ${branch.x} ${branch.y}`;
+const nodeIcons = [BrainCircuit, Network, ChartNoAxesCombined, BarChart3, Cuboid, Search];
+
+function branchPath(branch: Branch, index: number) {
+  const startY = 75 - Math.abs(50 - branch.y) * 0.28 + (index % 2) * 2;
+  const bendX = branch.side === "left" ? 39 : 61;
+  const nearX = branch.side === "left" ? branch.x + 10 : branch.x - 10;
+  return `M 50 ${startY} C ${bendX} ${startY - 6}, ${nearX} ${branch.y + 7}, ${branch.x} ${branch.y}`;
+}
+
+function TreeNetwork({ activeIndex }: { activeIndex: number }) {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <svg
+      viewBox="0 0 100 100"
+      role="img"
+      aria-label="A living digital tree connecting decision intelligence, AI, uncertainty, finance, data products, and research"
+      className="tree-svg"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      <defs>
+        <linearGradient id="trunkFlow" x1="50" x2="50" y1="5" y2="96" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#73e9ff" />
+          <stop offset="0.58" stopColor="#5c8cff" />
+          <stop offset="1" stopColor="#e7b85f" />
+        </linearGradient>
+        <radialGradient id="treeAtmosphere" cx="50%" cy="46%" r="48%">
+          <stop offset="0" stopColor="#5c8cff" stopOpacity="0.15" />
+          <stop offset="0.68" stopColor="#041024" stopOpacity="0.04" />
+          <stop offset="1" stopColor="#020711" stopOpacity="0" />
+        </radialGradient>
+        <filter id="treeGlow" x="-80%" y="-80%" width="260%" height="260%">
+          <feGaussianBlur stdDeviation="1.15" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
+      <ellipse cx="50" cy="51" rx="45" ry="42" fill="url(#treeAtmosphere)" />
+
+      <g className="tree-canopy" opacity="0.34">
+        <path d="M50 61 C39 51 35 37 28 22 M50 61 C60 51 64 37 74 19 M48 70 C34 65 27 58 16 52 M52 68 C67 64 77 58 86 48" />
+        <path d="M45 54 C37 48 31 45 24 43 M55 50 C64 43 72 39 80 38 M46 44 C42 34 39 28 34 22 M56 39 C61 31 65 26 69 19" />
+        <path d="M36 46 C30 37 24 33 18 31 M64 45 C73 36 81 33 88 31 M36 63 C25 62 18 65 12 70 M64 62 C74 61 83 64 91 69" />
+      </g>
+
+      <g className="tree-roots">
+        <path d="M50 93 C42 89 34 88 23 92 M50 93 C58 89 68 88 80 92" />
+        <path d="M50 92 C44 85 38 83 31 84 M50 92 C56 85 62 82 70 84" />
+        <path d="M50 92 C50 84 49 79 48 75 M50 92 C40 94 31 96 16 97 M50 92 C62 94 73 96 89 97" />
+      </g>
+
+      <path
+        d="M50 92 C47 80 49 70 50 60 C51 49 49 38 52 28 C53 20 51 14 54 7"
+        className="tree-trunk-halo"
+      />
+      <motion.path
+        d="M50 92 C47 80 49 70 50 60 C51 49 49 38 52 28 C53 20 51 14 54 7"
+        className="tree-trunk"
+        stroke="url(#trunkFlow)"
+        strokeDasharray="8 9"
+        animate={reduceMotion ? undefined : { strokeDashoffset: [0, -34] }}
+        transition={{ duration: 6.8, ease: "linear", repeat: Infinity }}
+      />
+      <path d="M48.6 91 C51 78 48 67 50 56 C52 45 48 31 51 16" className="tree-trunk-detail" />
+
+      {branches.map((branch, index) => {
+        const active = index === activeIndex;
+        const d = branchPath(branch, index);
+        return (
+          <g key={`${branch.label}-${index}`}>
+            <path d={d} className="tree-branch-halo" />
+            <motion.path
+              d={d}
+              className="tree-branch"
+              stroke={active ? accentStroke[branch.accent] : "rgba(133, 178, 218, 0.42)"}
+              strokeWidth={active ? 0.82 : 0.46}
+              strokeDasharray={active ? "4 4" : "2 6"}
+              animate={reduceMotion ? undefined : { strokeDashoffset: [0, -18] }}
+              transition={{ duration: active ? 2.2 : 5, ease: "linear", repeat: Infinity }}
+            />
+            <circle
+              cx={branch.x}
+              cy={branch.y}
+              r={active ? 2.5 : 1.65}
+              fill="#03101f"
+              stroke={accentStroke[branch.accent]}
+              strokeWidth={active ? 0.78 : 0.42}
+              filter={active ? "url(#treeGlow)" : undefined}
+            />
+            <circle
+              cx={branch.x}
+              cy={branch.y}
+              r={active ? 0.74 : 0.42}
+              fill={accentStroke[branch.accent]}
+            />
+          </g>
+        );
+      })}
+
+      {Array.from({ length: 72 }, (_, index) => {
+        const angle = index * 2.399;
+        const radius = 11 + (index % 12) * 2.55;
+        const x = 50 + Math.cos(angle) * radius * 1.08;
+        const y = 50 + Math.sin(angle) * radius * 0.73;
+        return (
+          <circle
+            key={index}
+            cx={x}
+            cy={y}
+            r={index % 9 === 0 ? 0.42 : 0.2}
+            fill={index % 7 === 0 ? "#e7b85f" : index % 5 === 0 ? "#78f4df" : "#73e9ff"}
+            opacity={0.18 + (index % 5) * 0.08}
+          />
+        );
+      })}
+    </svg>
+  );
 }
 
 export function DigitalTreeHero() {
-  const [activeBranch, setActiveBranch] = useState(branches[1].id);
+  const [activeIndex, setActiveIndex] = useState(0);
   const reduceMotion = useReducedMotion();
-  const active = useMemo(
-    () => branches.find((branch) => branch.id === activeBranch) ?? branches[1],
-    [activeBranch]
-  );
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+  const x = useSpring(rawX, { stiffness: 80, damping: 24 });
+  const y = useSpring(rawY, { stiffness: 80, damping: 24 });
+  const active = branches[activeIndex] ?? branches[0];
 
   return (
     <section
       id="home"
-      className="relative min-h-screen overflow-hidden px-5 pb-16 pt-28 sm:px-8 lg:px-10"
+      className="hero"
+      onPointerMove={(event) => {
+        if (reduceMotion) return;
+        const bounds = event.currentTarget.getBoundingClientRect();
+        rawX.set(((event.clientX - bounds.left) / bounds.width - 0.5) * 10);
+        rawY.set(((event.clientY - bounds.top) / bounds.height - 0.5) * 8);
+      }}
+      onPointerLeave={() => {
+        rawX.set(0);
+        rawY.set(0);
+      }}
     >
       <ParticleField />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_63%_42%,rgba(88,230,255,0.14),transparent_40%)]" />
-
-      <div className="relative z-10 mx-auto grid min-h-[calc(100vh-7rem)] max-w-7xl items-center gap-10 lg:grid-cols-[0.84fr_1.16fr]">
-        <div className="max-w-2xl">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-md border border-cyan/20 bg-cyan/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-cyan">
-            <Sparkles size={14} aria-hidden="true" />
-            Digital identity system
-          </div>
-          <h1 className="text-balance text-4xl font-semibold leading-[1.02] text-white sm:text-6xl lg:text-[4.65rem]">
-            {profile.heroHeadline}
-          </h1>
-          <p className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-slate-300 sm:text-xl">
-            {profile.heroBody}
-          </p>
-          <div className="mt-7 flex flex-wrap gap-2">
-            {profile.labels.map((label) => (
-              <span
-                key={label}
-                className="rounded-md border border-white/10 bg-white/[0.04] px-3 py-2 text-sm font-medium text-slate-200"
-              >
-                {label}
-              </span>
-            ))}
-          </div>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <a
-              href="#projects"
-              className="focus-ring group inline-flex items-center justify-center gap-2 rounded-md border border-cyan/50 bg-cyan/15 px-5 py-3 text-sm font-semibold text-cyan shadow-glow transition hover:bg-cyan/20"
-            >
-              Explore proof-of-work
-              <ArrowRight size={17} className="transition group-hover:translate-x-1" aria-hidden="true" />
+      <div className="hero-atmosphere" aria-hidden="true" />
+      <div className="site-container hero-grid">
+        <div className="hero-copy">
+          <p className="hero-identity">{profile.name} — {profile.role}</p>
+          <h1>{profile.heroHeadline}</h1>
+          <p className="hero-body">{profile.heroBody}</p>
+          <div className="hero-actions">
+            <a href="#builds" className="focus-ring button-primary">
+              Explore what I&apos;m building <ArrowRight size={18} aria-hidden="true" />
             </a>
-            <a
-              href="#about"
-              className="focus-ring inline-flex items-center justify-center gap-2 rounded-md border border-white/12 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white transition hover:border-gold/45 hover:bg-gold/10 hover:text-gold"
-            >
-              How I think
-              <ArrowDown size={17} aria-hidden="true" />
+            <a href="#contact" className="focus-ring button-secondary">
+              Discuss a venture <ArrowDownRight size={18} aria-hidden="true" />
             </a>
           </div>
+          <a href="#contact" className="focus-ring opportunity-link">
+            {profile.opportunityNote} <ArrowUpRight size={14} aria-hidden="true" />
+          </a>
         </div>
 
-        <div className="relative min-h-[580px] lg:min-h-[720px]" aria-label="Interactive digital tree navigation">
-          <div className="absolute inset-x-0 top-0 mx-auto h-full max-w-4xl">
-            <svg
-              viewBox="0 0 100 100"
-              role="img"
-              aria-label="A glowing digital intelligence tree with branches for site navigation"
-              className="h-full w-full drop-shadow-[0_0_36px_rgba(88,230,255,0.24)]"
-              preserveAspectRatio="xMidYMid meet"
-            >
-              <defs>
-                <radialGradient id="coreGlow" cx="50%" cy="54%" r="44%">
-                  <stop offset="0%" stopColor="rgba(88, 230, 255, 0.8)" />
-                  <stop offset="54%" stopColor="rgba(88, 230, 255, 0.18)" />
-                  <stop offset="100%" stopColor="rgba(88, 230, 255, 0)" />
-                </radialGradient>
-                <linearGradient id="trunkGradient" x1="50" x2="50" y1="10" y2="94">
-                  <stop offset="0%" stopColor="rgba(88, 230, 255, 0.95)" />
-                  <stop offset="58%" stopColor="rgba(91, 156, 255, 0.78)" />
-                  <stop offset="100%" stopColor="rgba(246, 200, 106, 0.82)" />
-                </linearGradient>
-                <filter id="softGlow">
-                  <feGaussianBlur stdDeviation="1.7" result="blur" />
-                  <feMerge>
-                    <feMergeNode in="blur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-              </defs>
-
-              <circle cx="50" cy="50" r="42" fill="url(#coreGlow)" opacity="0.58" />
-              <path
-                d="M50 92 C43 86 36 84 27 86 M50 92 C57 86 64 84 73 86 M50 92 C47 86 43 82 38 78 M50 92 C53 86 57 82 62 78 M50 92 C50 84 50 76 50 68"
-                className="tree-line"
-                stroke="rgba(246, 200, 106, 0.48)"
-                strokeWidth="0.82"
-                filter="url(#softGlow)"
-              />
-              <motion.path
-                d="M50 88 C48 78 49 68 50 58 C51 47 50 35 50 23 C50 17 51 13 53 9"
-                className="tree-line"
-                stroke="url(#trunkGradient)"
-                strokeWidth="2.3"
-                filter="url(#softGlow)"
-                strokeDasharray="10 8"
-                animate={reduceMotion ? undefined : { strokeDashoffset: [0, -34] }}
-                transition={{ duration: 6.5, ease: "linear", repeat: Infinity }}
-              />
-              <path
-                d="M47 88 C48 76 50 67 50 56 C50 44 51 32 47 16"
-                className="tree-line"
-                stroke="rgba(255,255,255,0.24)"
-                strokeWidth="0.42"
-              />
-
-              {branches.map((branch) => {
-                const isActive = branch.id === active.id;
-                return (
-                  <g key={branch.id}>
-                    <path
-                      d={branchPath(branch)}
-                      className="tree-line"
-                      stroke="rgba(88, 230, 255, 0.09)"
-                      strokeWidth="3.2"
-                    />
-                    <motion.path
-                      d={branchPath(branch)}
-                      className="tree-line"
-                      stroke={isActive ? accentStroke[branch.accent] : "rgba(148, 212, 255, 0.22)"}
-                      strokeWidth={isActive ? 1.18 : 0.68}
-                      strokeDasharray="6 7"
-                      filter={isActive ? "url(#softGlow)" : undefined}
-                      animate={reduceMotion ? undefined : { strokeDashoffset: [0, -26] }}
-                      transition={{
-                        duration: isActive ? 2.7 : 5.4,
-                        ease: "linear",
-                        repeat: Infinity
-                      }}
-                    />
-                    <circle
-                      cx={branch.x}
-                      cy={branch.y}
-                      r={isActive ? 1.68 : 1.08}
-                      fill={accentStroke[branch.accent]}
-                      opacity={isActive ? 1 : 0.68}
-                      filter="url(#softGlow)"
-                    />
-                  </g>
-                );
-              })}
-
-              {Array.from({ length: 52 }).map((_, index) => {
-                const angle = (index / 52) * Math.PI * 2;
-                const radius = 18 + (index % 7) * 3.2;
-                const x = 50 + Math.cos(angle) * radius * 1.08;
-                const y = 49 + Math.sin(angle) * radius * 0.72;
-                return (
-                  <circle
-                    key={index}
-                    cx={x}
-                    cy={y}
-                    r={index % 5 === 0 ? 0.55 : 0.32}
-                    fill={index % 6 === 0 ? "rgba(246,200,106,0.9)" : "rgba(88,230,255,0.72)"}
-                    opacity={0.42 + (index % 4) * 0.08}
-                  />
-                );
-              })}
-            </svg>
-
-            {branches.map((branch) => (
+        <motion.div className="tree-stage" style={reduceMotion ? undefined : { x, y }}>
+          <TreeNetwork activeIndex={activeIndex} />
+          {branches.map((branch, index) => {
+            const Icon = nodeIcons[index] ?? Network;
+            return (
               <a
-                key={branch.id}
+                key={`${branch.label}-${index}`}
                 href={branch.href}
-                className="branch-node focus-ring"
+                className="focus-ring tree-node"
+                data-active={activeIndex === index}
                 data-accent={branch.accent}
-                data-active={activeBranch === branch.id}
-                data-side={branch.side}
                 style={{ left: `${branch.x}%`, top: `${branch.y}%` }}
-                onMouseEnter={() => setActiveBranch(branch.id)}
-                onFocus={() => setActiveBranch(branch.id)}
+                onPointerEnter={() => setActiveIndex(index)}
+                onFocus={() => setActiveIndex(index)}
+                onClick={() => setActiveIndex(index)}
               >
-                <span className="branch-node-label">{branch.label}</span>
-                <span className="branch-node-copy">{branch.description}</span>
+                <span className="tree-node-icon"><Icon size={16} aria-hidden="true" /></span>
+                <span>{branch.label}</span>
               </a>
-            ))}
-          </div>
+            );
+          })}
 
-          <div className="absolute bottom-2 left-1/2 hidden w-[min(78%,27rem)] -translate-x-1/2 rounded-lg border border-white/10 bg-ink/72 p-4 text-sm text-slate-300 shadow-glow backdrop-blur lg:block">
-            <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-cyan">
-              <Network size={14} aria-hidden="true" />
-              Active branch
-            </div>
-            <p className="text-white">{active.label}</p>
-            <p className="mt-1 leading-6">{active.description}</p>
-          </div>
-        </div>
-
-        <div className="grid gap-3 sm:grid-cols-2 lg:hidden">
-          {branches.map((branch) => (
-            <a
-              key={branch.id}
-              href={branch.href}
-              className="focus-ring rounded-lg border border-white/10 bg-white/[0.04] p-4 transition hover:border-cyan/40 hover:bg-cyan/10"
-            >
-              <span className="text-sm font-semibold text-white">{branch.label}</span>
-              <span className="mt-1 block text-sm leading-6 text-slate-300">{branch.description}</span>
+          <div className="tree-preview" data-accent={active.accent}>
+            <p className="micro-label">Active pathway</p>
+            <h2>{active.label}</h2>
+            <p>{active.description}</p>
+            <a href={active.href} className="focus-ring text-link">
+              Explore this area <ArrowRight size={15} aria-hidden="true" />
             </a>
-          ))}
-        </div>
+          </div>
+        </motion.div>
       </div>
+      <a href="#builds" className="focus-ring hero-next">
+        <span>Selected builds</span>
+        <ArrowDownRight size={18} aria-hidden="true" />
+      </a>
     </section>
   );
 }

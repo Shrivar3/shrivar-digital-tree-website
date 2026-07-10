@@ -1,15 +1,51 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
+const deploymentHost =
+  process.env.VERCEL_PROJECT_PRODUCTION_URL ?? process.env.VERCEL_URL;
+
 export const metadata: Metadata = {
-  title: "Shrivar Singh | Strategic Problem-Solver",
+  metadataBase: new URL(deploymentHost ? `https://${deploymentHost}` : "http://localhost:3000"),
+  applicationName: "Shrivar Singh",
+  title: "Shrivar Singh | Quantitative Founder-Builder",
   description:
-    "A premium digital-tree personal website for Shrivar Singh: thinker, builder, analyst, and strategist across statistics, AI, finance, research, and useful systems.",
+    "Shrivar Singh builds quantitative systems across statistics, AI, analytics, finance, and decision intelligence — from rigorous research to useful prototypes and products.",
+  authors: [{ name: "Shrivar Singh" }],
+  creator: "Shrivar Singh",
+  keywords: [
+    "Shrivar Singh",
+    "quantitative systems",
+    "decision intelligence",
+    "applied AI",
+    "statistics",
+    "customer analytics",
+    "quantitative finance"
+  ],
   openGraph: {
-    title: "Shrivar Singh | Strategic Problem-Solver",
-    description: "Clear thinking. Useful systems. Better decisions.",
+    title: "Shrivar Singh | Quantitative Founder-Builder",
+    description:
+      "Quantitative systems that turn noisy data and uncertainty into better decisions.",
+    siteName: "Shrivar Singh",
+    locale: "en_GB",
     type: "website"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shrivar Singh | Quantitative Founder-Builder",
+    description:
+      "Quantitative systems that turn noisy data and uncertainty into better decisions."
+  },
+  robots: {
+    index: true,
+    follow: true
   }
+};
+
+export const viewport: Viewport = {
+  colorScheme: "dark",
+  themeColor: "#020711",
+  width: "device-width",
+  initialScale: 1
 };
 
 export default function RootLayout({

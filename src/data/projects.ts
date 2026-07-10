@@ -1,132 +1,193 @@
+export type ProjectVisual = "signals" | "speech" | "agents" | "sampling" | "housing" | "portfolio" | "identity";
+
 export type Project = {
+  slug: string;
   title: string;
-  description: string;
-  audienceSummary: string;
+  shortDescription: string;
+  problem: string;
+  audience: string;
+  whyItMatters: string;
+  approach: string;
+  currentStage: string;
+  evidence: string;
+  nextMilestone: string;
   technicalDetail: string;
   tags: string[];
   status: "In progress" | "Research" | "Concept" | "Portfolio";
+  visual: ProjectVisual;
+  featured: boolean;
   githubUrl?: string;
   demoUrl?: string;
-  academicEvidence?: string[];
+  foundationAreas?: string[];
 };
 
 export const projects: Project[] = [
   {
-    title: "Agentic AI Workflows",
-    description:
-      "Designing instruction systems and workflows for AI agents that support research, coding, analysis, and presentation work.",
-    audienceSummary:
-      "A practical systems project about making AI assistance more reliable, reusable, and aligned with the task.",
-    technicalDetail:
-      "Focus areas include structured prompts, reusable agent profiles, task decomposition, verification loops, and output formats that can move between repos, reports, and decks.",
-    tags: ["AI", "Agents", "Systems", "Productivity"],
-    status: "In progress",
-    academicEvidence: [
-      "ST420 Statistical Learning & Big Data",
-      "Machine Learning Frameworks",
-      "Programming for Data Science",
-      "ST237 Visualisation and Communication"
-    ]
-  },
-  {
-    title: "Tone-Conditioned VITS Speech Synthesis",
-    description:
-      "Applied AI project exploring tone-conditioned speech synthesis for Twi language modelling and VITS fine-tuning.",
-    audienceSummary:
-      "A speech AI project aimed at more expressive and context-aware voice generation.",
-    technicalDetail:
-      "Work area for dataset preparation, tone conditioning, fine-tuning strategy, evaluation, and clear explanation of modelling assumptions and limitations.",
-    tags: ["AI", "Speech", "VITS", "NLP"],
-    status: "Research",
-    academicEvidence: [
-      "Machine Learning Frameworks",
-      "ST420 Statistical Learning & Big Data",
-      "Programming for Data Science"
-    ]
-  },
-  {
+    slug: "nps-customer-analytics",
     title: "NPS Modelling and Customer Analytics",
-    description:
-      "Statistically rigorous customer analytics focused on improving NPS measurement, uncertainty, and operational decision-making.",
-    audienceSummary:
-      "A decision intelligence project for making customer feedback more trustworthy and useful.",
+    shortDescription:
+      "Turning noisy customer feedback into more trustworthy signals for operational decisions.",
+    problem:
+      "Customer feedback is noisy, unevenly sampled, and easy to over-interpret. A headline score can hide uncertainty and differences between customer groups.",
+    audience:
+      "Teams using customer feedback to prioritise service, product, or operational improvements.",
+    whyItMatters:
+      "When the measurement is fragile, teams can act confidently on the wrong signal.",
+    approach:
+      "Treat sample quality, uncertainty, segmentation, and model validity as part of the decision—not footnotes after it.",
+    currentStage:
+      "In progress: developing the modelling and decision-intelligence approach without claiming results before validation.",
+    evidence:
+      "The analytical scope is defined around uncertainty, sample quality, segmentation, model validity, and operational interpretation.",
+    nextMilestone:
+      "Build a reproducible validation and reporting workflow that makes the limits of each signal clear.",
     technicalDetail:
-      "Designed around uncertainty, sample quality, segmentation, model validity, and the translation of noisy customer signals into practical decisions.",
-    tags: ["Statistics", "Analytics", "Customer Data", "Decision Intelligence"],
+      "The technical work is organised around sampling behaviour, segment-level comparisons, statistical uncertainty, model diagnostics, and the translation of results into operational choices.",
+    tags: ["Statistics", "Customer analytics", "Decision intelligence"],
     status: "In progress",
-    academicEvidence: [
-      "Applied Statistical Modelling (L4+)",
-      "Generalised Linear Models",
-      "Bayesian Statistics and Decision Theory (L4+)",
-      "ST237 Visualisation and Communication"
-    ]
+    visual: "signals",
+    featured: true,
+    foundationAreas: ["Statistics and inference", "Machine learning and data"]
   },
   {
-    title: "Nested Sampling Dissertation",
-    description:
-      "Research project on uncertainty in nested sampling, statistical computation, and evidence estimation.",
-    audienceSummary:
-      "A rigorous research project about how uncertainty behaves in advanced statistical computation.",
+    slug: "tone-conditioned-vits",
+    title: "Tone-Conditioned VITS Speech Synthesis",
+    shortDescription:
+      "Exploring tone-conditioned speech synthesis for Twi language modelling and VITS fine-tuning.",
+    problem:
+      "Tone carries meaning, so speech generation that treats it as incidental risks losing important linguistic information.",
+    audience:
+      "Researchers and builders working on expressive, context-aware speech technology for tonal languages.",
+    whyItMatters:
+      "Speech quality is not only about acoustic smoothness; the generated voice also needs to preserve meaningful tonal structure.",
+    approach:
+      "Connect dataset preparation, explicit tone conditioning, VITS fine-tuning, and evaluation criteria in one research workflow.",
+    currentStage:
+      "Research: the project is framed around data preparation, conditioning strategy, fine-tuning, and honest evaluation.",
+    evidence:
+      "The current work defines the modelling questions and the constraints that a credible evaluation needs to address.",
+    nextMilestone:
+      "Document the dataset, tone representation, fine-tuning plan, and evaluation protocol before making performance claims.",
     technicalDetail:
-      "Explores evidence estimation, nested sampling behaviour, uncertainty quantification, assumptions, and how technical results can be explained without hiding the mathematics.",
-    tags: ["Statistics", "Research", "Uncertainty", "Computation"],
+      "The technical focus covers tone-aware data representation, VITS conditioning, fine-tuning design, evaluation, and limitations in data and modelling assumptions.",
+    tags: ["Speech AI", "VITS", "Twi"],
     status: "Research",
-    academicEvidence: [
-      "ST407 Monte Carlo Methods",
-      "Probability Theory",
-      "Measure Theory for Probability",
-      "Applied Stochastic Processes (L4+)"
-    ]
+    visual: "speech",
+    featured: true,
+    foundationAreas: ["Machine learning and data", "Programming"]
   },
   {
+    slug: "agentic-ai-workflows",
+    title: "Agentic AI Workflows",
+    shortDescription:
+      "Designing reusable AI workflows for research, coding, analysis, and presentation work.",
+    problem:
+      "General-purpose AI assistance becomes unreliable when instructions, tool use, and verification are left implicit.",
+    audience:
+      "People using AI across multi-step analytical and technical work where consistency and review matter.",
+    whyItMatters:
+      "Fast output has little value if it cannot be checked, reused, or connected to the actual task.",
+    approach:
+      "Use structured instructions, task decomposition, tool-aware execution, and explicit verification loops.",
+    currentStage:
+      "In progress: developing workflows and reusable instruction patterns across practical tasks.",
+    evidence:
+      "The current system design covers reusable agent profiles, decomposition, verification, and outputs that move between repositories, reports, and decks.",
+    nextMilestone:
+      "Formalise and document one end-to-end workflow with explicit checks, failure modes, and limits.",
+    technicalDetail:
+      "The work focuses on instruction architecture, specialised agent roles, context management, tool use, verification loops, and durable output formats.",
+    tags: ["AI agents", "Verification", "Workflows"],
+    status: "In progress",
+    visual: "agents",
+    featured: true,
+    foundationAreas: ["Machine learning and data", "Technical communication"]
+  },
+  {
+    slug: "nested-sampling-dissertation",
+    title: "Nested Sampling Dissertation",
+    shortDescription:
+      "Investigating uncertainty in nested sampling, statistical computation, and evidence estimation.",
+    problem:
+      "Advanced computational methods can produce precise-looking answers while the uncertainty in the method itself remains difficult to understand.",
+    audience:
+      "Technical readers interested in Bayesian computation, evidence estimation, and uncertainty quantification.",
+    whyItMatters:
+      "Reliable inference depends on knowing what the computation can support, not only obtaining a numerical answer.",
+    approach:
+      "Study evidence estimation, nested-sampling behaviour, assumptions, and uncertainty while keeping the explanation connected to the mathematics.",
+    currentStage:
+      "Research: dissertation work focused on the behaviour and uncertainty of nested sampling.",
+    evidence:
+      "The work provides a rigorous research setting for statistical computation, evidence estimation, and uncertainty reasoning.",
+    nextMilestone:
+      "Translate the research into a concise public technical explanation and an interpretable visual narrative.",
+    technicalDetail:
+      "The research concerns evidence estimation, the contraction of likelihood regions, sampling behaviour, uncertainty quantification, and transparent communication of assumptions.",
+    tags: ["Bayesian computation", "Uncertainty", "Research"],
+    status: "Research",
+    visual: "sampling",
+    featured: true,
+    foundationAreas: ["Statistics and inference", "Stochastic processes"]
+  },
+  {
+    slug: "london-housing-analysis",
     title: "London Housing and Area Analysis",
-    description:
-      "Analytical project exploring London housing, commute trade-offs, area quality, and data-driven location choice.",
-    audienceSummary:
-      "A real-world decision project that turns messy housing and location data into practical trade-offs.",
+    shortDescription:
+      "Exploring housing, commute, affordability, and area trade-offs for clearer location decisions.",
+    problem: "Location choices combine several incomplete and competing data sources.",
+    audience: "People comparing London areas under practical budget and commute constraints.",
+    whyItMatters: "A single ranking can conceal the trade-offs that matter to an individual decision.",
+    approach: "Combine public data, constraints, proxies, and map-based explanation.",
+    currentStage: "Concept: retained as a future data-product direction.",
+    evidence: "The problem and intended data sources are defined; no completed output is claimed.",
+    nextMilestone: "Validate data availability and create a first transparent comparison model.",
     technicalDetail:
-      "Designed to combine public datasets, commute constraints, affordability, area quality proxies, and map-based communication for clearer location decisions.",
-    tags: ["Data", "Cities", "Maps", "Decision-Making"],
+      "The concept combines public datasets, commute constraints, affordability, area-quality proxies, and map-based communication.",
+    tags: ["Cities", "Maps", "Decision-making"],
     status: "Concept",
-    academicEvidence: [
-      "ST236 Python for Data Analytics",
-      "ST237 Visualisation and Communication",
-      "ST234 Games and Decisions",
-      "EC220 Mathematical Economics 1A"
-    ]
+    visual: "housing",
+    featured: false
   },
   {
+    slug: "investment-portfolio-analysis",
     title: "Investment Portfolio Analysis",
-    description:
-      "Long-term portfolio construction, factor-tilt evaluation, drawdown analysis, and wealth-path modelling using evidence-based investing principles.",
-    audienceSummary:
-      "A finance project focused on global diversification, sensible risk, compounding, tax-aware implementation, and robust decision-making rather than short-term market prediction.",
+    shortDescription:
+      "Exploring portfolio construction, factor tilts, drawdowns, and long-horizon wealth paths.",
+    problem: "Portfolio choices are often discussed without path risk, fees, or implementation friction.",
+    audience: "Readers interested in evidence-based long-term portfolio reasoning.",
+    whyItMatters: "A theoretically attractive allocation may be fragile after costs and behaviour.",
+    approach: "Compare risk, return, drawdowns, fees, tracking error, and simulated wealth paths.",
+    currentStage: "Concept: an analytical direction, not financial advice or a finished product.",
+    evidence: "The quantitative framework and relevant risk measures are defined.",
+    nextMilestone: "Create a transparent scenario model with sensitivity analysis.",
     technicalDetail:
-      "Covers allocation logic, expected return versus volatility, Sharpe ratio, CAGR, max drawdown, sequence risk, fees, tracking error, Monte Carlo wealth simulations, factor definitions, and the difference between analytical modelling and financial advice.",
-    tags: ["Finance", "Investing", "Risk", "Monte Carlo"],
+      "The concept covers allocation logic, expected return, volatility, drawdown, fees, tracking error, simulation, and implementation constraints.",
+    tags: ["Finance", "Risk", "Simulation"],
     status: "Concept",
-    academicEvidence: [
-      "ST401 Stochastic Methods for Finance",
-      "ST407 Monte Carlo Methods",
-      "ST965 Time Series",
-      "ST235 Finance and Financial Reporting"
-    ]
+    visual: "portfolio",
+    featured: false
   },
   {
+    slug: "digital-identity-system",
     title: "Personal Website and Identity System",
-    description:
-      "A self-branding and design system project turning identity, values, and proof-of-work into an interactive digital presence.",
-    audienceSummary:
-      "The website itself is a proof-of-work layer: part portfolio, part identity system, part map of how I think.",
+    shortDescription:
+      "Turning identity, values, and proof-of-work into an accessible interactive presence.",
+    problem: "A conventional résumé does not show how someone frames, builds, and presents work.",
+    audience: "Potential collaborators, investors, and employers evaluating fit and capability.",
+    whyItMatters: "The presentation of proof changes how quickly a visitor can understand its relevance.",
+    approach: "Use editable data, accessible motion, and an original digital-tree metaphor.",
+    currentStage: "Portfolio: actively developed as the public proof-of-work layer.",
+    evidence: "The live repository contains the responsive site, data model, SVG, canvas, and interaction work.",
+    nextMilestone: "Continue replacing narrative claims with deeper project outputs as they become public.",
     technicalDetail:
-      "Built with editable data, responsive interaction design, accessible animation, and an original digital-tree metaphor rather than a generic portfolio template.",
-    tags: ["Design", "Brand", "Website", "Strategy"],
+      "Built with Next.js, React, TypeScript, Tailwind CSS, Framer Motion, SVG, and canvas-based visual systems.",
+    tags: ["Design", "Next.js", "Identity"],
     status: "Portfolio",
-    githubUrl: "https://github.com/Shrivar3/shrivar-digital-tree-website",
-    academicEvidence: [
-      "ST237 Visualisation and Communication",
-      "Programming for Data Science",
-      "ST236 Python for Data Analytics"
-    ]
+    visual: "identity",
+    featured: false,
+    githubUrl: "https://github.com/Shrivar3/shrivar-digital-tree-website"
   }
 ];
+
+export const featuredProjects = projects.filter((project) => project.featured);
