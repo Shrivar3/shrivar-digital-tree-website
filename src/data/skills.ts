@@ -1,18 +1,18 @@
 export const skillClusters = [
   {
-    title: "Statistics and modelling",
-    skills: ["Uncertainty", "Model validity", "Inference", "Decision quality"]
+    title: "Statistical inference and uncertainty",
+    skills: ["Bayesian reasoning", "Model validity", "Forecasting", "Simulation"]
   },
   {
-    title: "AI and systems",
-    skills: ["Agent workflows", "Applied ML", "Prompt systems", "Prototyping"]
+    title: "Machine learning and data systems",
+    skills: ["Statistical learning", "Python", "R", "Visualisation"]
   },
   {
-    title: "Finance and strategy",
-    skills: ["Risk", "Compounding", "Portfolio logic", "Expected value"]
+    title: "Quantitative systems",
+    skills: ["Stochastic processes", "Time series", "Optimisation", "Risk"]
   },
   {
-    title: "Communication",
-    skills: ["Technical writing", "Visual thinking", "Dashboards", "Storytelling"]
+    title: "Communication and product judgement",
+    skills: ["Problem framing", "Dashboards", "Technical writing", "Prototyping"]
   }
-];
+] as const;

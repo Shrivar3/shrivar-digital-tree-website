@@ -2,27 +2,39 @@ import type { ReactNode } from "react";
 
 type SectionShellProps = {
   id: string;
-  eyebrow: string;
+  number?: string;
+  label?: string;
   title: string;
-  intro: string;
+  intro?: string;
+  className?: string;
+  headerClassName?: string;
   children: ReactNode;
 };
 
-export function SectionShell({ id, eyebrow, title, intro, children }: SectionShellProps) {
+export function SectionShell({
+  id,
+  number,
+  label,
+  title,
+  intro,
+  className = "",
+  headerClassName = "",
+  children
+}: SectionShellProps) {
   return (
-    <section id={id} className="relative px-5 py-20 sm:px-8 lg:px-10">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-10 max-w-3xl">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-gold">
-            {eyebrow}
-          </p>
-          <h2 className="text-balance text-3xl font-semibold text-white sm:text-4xl lg:text-5xl">
-            {title}
-          </h2>
-          <p className="mt-5 text-pretty text-base leading-7 text-slate-300 sm:text-lg">
-            {intro}
-          </p>
-        </div>
+    <section id={id} className={`site-section ${className}`}>
+      <div className="site-container">
+        <header className={`section-heading ${headerClassName}`}>
+          {number || label ? (
+            <div className="section-index" aria-hidden={!label}>
+              {number ? <span>{number}</span> : null}
+              <span className="section-index-line" />
+              {label ? <span>{label}</span> : null}
+            </div>
+          ) : null}
+          <h2>{title}</h2>
+          {intro ? <p>{intro}</p> : null}
+        </header>
         {children}
       </div>
     </section>
