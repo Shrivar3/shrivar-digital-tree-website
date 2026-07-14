@@ -1,25 +1,25 @@
-import { CapabilitiesSection } from "@/components/CapabilitiesSection";
-import { CombinationSection } from "@/components/CombinationSection";
-import { DigitalTreeHero } from "@/components/DigitalTreeHero";
-import { FeaturedBuilds } from "@/components/FeaturedBuilds";
-import { FinalCta } from "@/components/FinalCta";
+import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
-import { FoundationSection } from "@/components/FoundationSection";
+import { HeroSection } from "@/components/HeroSection";
 import { Navigation } from "@/components/Navigation";
-import { ResearchSection } from "@/components/ResearchSection";
+import { NowSection } from "@/components/NowSection";
+import { PathSection } from "@/components/PathSection";
+import { ThinkingSection } from "@/components/ThinkingSection";
+import { ThesisSection } from "@/components/ThesisSection";
+import { WorkSection } from "@/components/WorkSection";
 
 export default function Home() {
   return (
     <>
       <Navigation />
       <main>
-        <DigitalTreeHero />
-        <FeaturedBuilds />
-        <CapabilitiesSection />
-        <CombinationSection />
-        <ResearchSection />
-        <FoundationSection />
-        <FinalCta />
+        <HeroSection />
+        <NowSection />
+        <WorkSection />
+        <ThinkingSection />
+        <PathSection />
+        <ThesisSection />
+        <ContactSection />
       </main>
       <Footer />
     </>

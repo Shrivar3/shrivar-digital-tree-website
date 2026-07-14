@@ -1,14 +1,13 @@
-import { ArrowUp } from "lucide-react";
-import { profile } from "@/data/profile";
+import { ArrowIcon } from "@/components/ArrowIcon";
+import { siteContent } from "@/data/content";
 
 export function Footer() {
   return (
     <footer className="site-footer">
-      <div className="site-container footer-inner">
-        <p>{profile.name} — quantitative founder-builder.</p>
-        <a href="#home" className="focus-ring footer-link">
-          Back to the tree <ArrowUp size={14} aria-hidden="true" />
-        </a>
+      <div className="page-shell">
+        <span>{siteContent.name}</span>
+        <p>Questions, models and systems for decisions under uncertainty.</p>
+        <a href="#home" className="focus-ring">Back to the tree <ArrowIcon direction="up" /></a>
       </div>
     </footer>
   );

@@ -1,96 +1,28 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Shrivar Singh — quantitative systems for better decisions";
+export const alt = "Shrivar Singh — statistics, AI and better decisions";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default function OpenGraphImage() {
+  const branches = [
+    { top: 92, rotate: -26, width: 260, color: "#73d8e7" },
+    { top: 176, rotate: -10, width: 300, color: "#73d8e7" },
+    { top: 270, rotate: 8, width: 290, color: "#73d8e7" },
+    { top: 356, rotate: 25, width: 250, color: "#d29b52" }
+  ];
   return new ImageResponse(
-    <div
-      style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        position: "relative",
-        overflow: "hidden",
-        background: "#020711",
-        color: "#f2f7fb",
-        fontFamily: "Arial, sans-serif"
-      }}
-    >
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          display: "flex",
-          background:
-            "radial-gradient(circle at 78% 42%, rgba(92,140,255,.22), transparent 34%), radial-gradient(circle at 76% 86%, rgba(231,184,95,.12), transparent 25%)"
-        }}
-      />
-      <div
-        style={{
-          width: "62%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          padding: "70px 0 70px 78px"
-        }}
-      >
-        <div style={{ display: "flex", color: "#78f4df", fontSize: 23, marginBottom: 34 }}>
-          Shrivar Singh — quantitative founder-builder
-        </div>
-        <div
-          style={{
-            display: "flex",
-            maxWidth: 700,
-            fontSize: 64,
-            lineHeight: 1.04,
-            letterSpacing: "-3px"
-          }}
-        >
-          Quantitative systems for better decisions.
-        </div>
-        <div style={{ display: "flex", color: "#a2b1c0", fontSize: 24, marginTop: 32 }}>
-          Statistics · AI · Analytics · Finance
-        </div>
+    <div style={{ width: "100%", height: "100%", display: "flex", position: "relative", overflow: "hidden", background: "#03080e", color: "#f1f1ec", fontFamily: "Arial, sans-serif" }}>
+      <div style={{ position: "absolute", inset: 0, display: "flex", background: "radial-gradient(circle at 76% 43%, rgba(66,163,181,.18), transparent 34%), linear-gradient(90deg, rgba(210,155,82,.06), transparent 45%)" }} />
+      <div style={{ width: "62%", display: "flex", flexDirection: "column", justifyContent: "center", padding: "64px 0 64px 76px", borderLeft: "1px solid rgba(115,216,231,.35)", marginLeft: 38 }}>
+        <div style={{ display: "flex", fontSize: 24, marginBottom: 50 }}>Shrivar Singh</div>
+        <div style={{ display: "flex", maxWidth: 650, fontSize: 59, lineHeight: 1.05, letterSpacing: "-2.5px" }}>I work on problems where the answer is not obvious yet.</div>
+        <div style={{ display: "flex", color: "#9aabb3", fontSize: 22, marginTop: 34 }}>Statistics · software · AI · uncertainty</div>
       </div>
-      <div
-        style={{
-          width: "38%",
-          display: "flex",
-          position: "relative",
-          alignItems: "center",
-          justifyContent: "center"
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            width: 8,
-            height: 390,
-            borderRadius: 99,
-            background: "linear-gradient(#73e9ff, #74a6ff 58%, #e7b85f)",
-            transform: "rotate(4deg)",
-            boxShadow: "0 0 34px rgba(115,233,255,.5)"
-          }}
-        />
-        {[[-112, -120], [98, -150], [-140, 15], [118, 6], [-86, 142], [88, 132]].map(
-          ([x, y], index) => (
-            <div
-              key={index}
-              style={{
-                position: "absolute",
-                left: 218 + x,
-                top: 315 + y,
-                width: 22,
-                height: 22,
-                border: `3px solid ${index % 3 === 0 ? "#78f4df" : index % 2 ? "#74a6ff" : "#e7b85f"}`,
-                borderRadius: 99,
-                boxShadow: "0 0 18px rgba(115,233,255,.35)"
-              }}
-            />
-          )
-        )}
+      <div style={{ width: "38%", display: "flex", position: "relative", alignItems: "center", justifyContent: "center" }}>
+        <div style={{ position: "absolute", left: 130, top: 76, width: 3, height: 464, background: "linear-gradient(#73d8e7, #73d8e7 67%, #d29b52)", boxShadow: "0 0 28px rgba(115,216,231,.34)" }} />
+        {branches.map((branch, index) => <div key={index} style={{ position: "absolute", left: 130, top: branch.top, width: branch.width, height: 1, background: branch.color, transform: "rotate(" + branch.rotate + "deg)", transformOrigin: "left" }} />)}
+        {Array.from({ length: 34 }, (_, index) => <div key={index} style={{ position: "absolute", left: 150 + ((index * 67) % 250), top: 58 + ((index * 43) % 490), width: index % 7 === 0 ? 6 : 3, height: index % 7 === 0 ? 6 : 3, borderRadius: 99, background: index % 5 === 0 ? "#d29b52" : "#73d8e7", opacity: .64 }} />)}
       </div>
     </div>,
     size
